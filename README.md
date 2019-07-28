@@ -1,6 +1,9 @@
 # pokemon-slider
 Slider showages different Pokemon on navigations. ReactJS learning application.
 
+## Output
+![alt text](https://raw.githubusercontent.com/ketanghumatkar/pokemon-slider/master/public/output_first.png)
+![alt text](https://raw.githubusercontent.com/ketanghumatkar/pokemon-slider/master/public/output_two.png)
 
 ### `npm start`
 
