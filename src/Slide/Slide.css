@@ -1,0 +1,37 @@
+.clear {
+  clear: both;
+}
+
+.slide {
+  width: 50vh;
+  height: 50vh;
+  float: left;
+  margin-left: 5vh;
+  margin-bottom: 2vh;
+  box-shadow: 2px 2px lightgrey;
+  background: white;
+}
+
+.slide:first {
+  margin-left: 0;
+}
+
+.slideHeader {
+  background: green;
+  padding: 1vh;
+  color: white;
+  text-transform: uppercase;
+}
+
+.slideTitle {
+  float: left;
+}
+
+.slideId {
+  float: right;
+}
+
+.slidePhoto {
+  height: 100%;
+  width: 100%;
+}

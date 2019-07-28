@@ -1,0 +1,13 @@
+button.prev {
+  float: left;
+  margin-left: 5vh;
+ }
+
+ button.next {
+   float: right;
+   margin-right: 7vh;
+ }
+
+ .clear {
+   clear: both;
+ }
