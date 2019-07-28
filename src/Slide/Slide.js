@@ -6,28 +6,69 @@ class Slide extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'ivysaur',
-      id: 2,
-      photoPath: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png'
+      name: null,
+      id: null,
+      photoUrl: null,
+      error: null
     }
   }
- render () {
-   return (
-     <div className="slide">
-      <div className="slideHeader">
-        <div className="slideTitle">
-          {this.state.name}
+
+  componentDidMount() {
+    fetch(this.props.url)
+    .then(res => res.json())
+    .then(
+      (data) => {
+        this.setState({
+          name: data.name,
+          id: data.id,
+          photoUrl: data.sprites.front_default
+        });
+      },
+      (error) => {
+        this.setState({
+          error: error
+        });
+      }
+    );
+  }
+
+  render () {
+    const { error, name, id, photoUrl } = this.state;
+    if (error) {
+      return (
+        <div className="slide">
+        <div className="slideHeader">
+          <div className="slideTitle">
+            {name}
+          </div>
+          <div className="slideId">
+            ID: {id}
+          </div>
+          <div className="clear"></div>
         </div>
-        <div className="slideId">
-          ID: {this.state.id}
+        <div className="slidePhoto">
+          <p>{error.message}</p>
         </div>
-        <div className="clear"></div>
-      </div>
-      <div className="slidePhoto">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png" alt="Image missing"></img>
-      </div>
-     </div>
-   );
+       </div>
+      )
+    } else {
+      return (
+        <div className="slide">
+         <div className="slideHeader">
+           <div className="slideTitle">
+             {name}
+           </div>
+           <div className="slideId">
+             ID: {id}
+           </div>
+           <div className="clear"></div>
+         </div>
+         <div className="slidePhoto">
+           <img src={photoUrl} alt="Missing URL"></img>
+         </div>
+        </div>
+      );
+    }
  }
 }
 
