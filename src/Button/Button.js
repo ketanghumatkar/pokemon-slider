@@ -4,13 +4,15 @@ import './Button.css';
 class Button extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      name: null
+      name: this.props.name
     }
   }
+
   render () {
     return (
-      <button className={this.props.class}>{ this.props.name }</button>
+      <button className={this.props.class} onClick={() => this.props.updateSlider(this.props.url)}>{ this.state.name }</button>
     );
   }
 }

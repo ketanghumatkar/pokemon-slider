@@ -8,6 +8,7 @@ class Slider extends React.Component {
 
   constructor(props) {
     super(props);
+    this.updateSlider = this.updateSlider.bind(this);
     this.state = {
       error: null,
       isLoaded: false,
@@ -27,6 +28,27 @@ class Slider extends React.Component {
           items: data.results,
           prevUrl: data.previous,
           nextUrl: data.next
+        })
+      },
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    )
+  }
+
+  updateSlider(url) {
+    fetch(url)
+    .then(res => res.json())
+    .then(
+      (data) => {
+        this.setState({
+          isLoaded: true,
+          items: data.results,
+          prevUrl: data.previous,
+          nextUrl: data.next
         });
       },
       (error) => {
@@ -37,6 +59,7 @@ class Slider extends React.Component {
       }
     )
   }
+
 
   render () {
     const { error, isLoaded, items, prevUrl, nextUrl } = this.state;
@@ -49,10 +72,10 @@ class Slider extends React.Component {
         <div className="slider">
           {
             items.map(item => (
-              <Slide name={item.name} url={item.url} />
+              <Slide key={item.name} name={item.name} url={item.url} />
             ))
           }
-          <SliderNav next-url={nextUrl} prev-url={prevUrl} />
+          <SliderNav nextUrl={nextUrl} prevUrl={prevUrl} updateSlider={this.updateSlider}/>
         </div>
       );
     }
